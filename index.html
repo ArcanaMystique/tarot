@@ -63,33 +63,34 @@
 </div>
 
 <div class="offer">
-    <h2>🗓️ Formulaire de Tirage</h2>
-    <form>
-        <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom">
-        </div>
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom">
-        </div>
-        <div class="form-group">
-            <label for="date">Date de naissance</label>
-            <input type="date" id="date" name="date">
-        </div>
-        <div class="form-group">
-            <label for="theme">Thème du tirage</label>
-            <select id="theme" name="theme">
-                <option value="general">Général</option>
-                <option value="amour">Amour</option>
-                <option value="travail">Travail</option>
-                <option value="spirituel">Spirituel</option>
-                <option value="duo">Duo amoureux</option>
-            </select>
-        </div>
-        <a class="btn" href="#">Envoyer</a>
-    </form>
+  <h2>🗓️ Formulaire de Tirage</h2>
+  <form action="https://hook.us1.make.com/abc123456xyz" method="POST">
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" required>
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required>
+    </div>
+    <div class="form-group">
+      <label for="date">Date de naissance</label>
+      <input type="date" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+      <label for="theme">Thème du tirage</label>
+      <select id="theme" name="theme" required>
+        <option value="général">Général</option>
+        <option value="amour">Amour</option>
+        <option value="travail">Travail</option>
+        <option value="spirituel">Spirituel</option>
+        <option value="duo">Duo amoureux</option>
+      </select>
+    </div>
+    <button class="btn" type="submit">Envoyer</button>
+  </form>
 </div>
+
 
 </body>
 </html>

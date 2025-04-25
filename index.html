@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tirages de Tarot Personnalisés</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f7f2f7; padding: 30px; color: #333; }
+        h1 { text-align: center; color: #663399; }
+        .offer { background: #fff; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 500px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        .offer h2 { margin-top: 0; }
+        .btn { background: #663399; color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<h1>Recevez votre tirage de tarot personnalisé</h1>
+
+<div class="offer">
+    <h2>✨ Tirage Unique Complet</h2>
+    <p>Un tirage personnalisé de 3 à 5 cartes avec interprétation vocale et vidéo.</p>
+    <p><strong>Prix :</strong> 9,99 CHF</p>
+    <a class="btn" href="#">Payer avec Stripe (TEST)</a>
+</div>
+
+<div class="offer">
+    <h2>📅 Formulaire de Tirage</h2>
+    <form>
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom">
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom">
+        </div>
+        <div class="form-group">
+            <label for="date">Date de naissance</label>
+            <input type="date" id="date" name="date">
+        </div>
+        <div class="form-group">
+            <label for="theme">Thème du tirage</label>
+            <select id="theme" name="theme">
+                <option value="general">Général</option>
+                <option value="amour">Amour</option>
+                <option value="travail">Travail</option>
+                <option value="spirituel">Spirituel</option>
+                <option value="duo">Duo amoureux</option>
+            </select>
+        </div>
+        <a class="btn" href="#">Envoyer</a>
+    </form>
+</div>
+
+</body>
+</html>

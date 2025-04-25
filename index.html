@@ -14,6 +14,7 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; }
         input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+        #confirmation { text-align: center; color: green; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
@@ -21,50 +22,8 @@
 <h1>Recevez votre tirage de tarot personnalisé</h1>
 
 <div class="offer">
-    <h2>✨ Tirage Unique Complet</h2>
-    <p>Un tirage personnalisé de 3 à 5 cartes avec interprétation vocale et vidéo.</p>
-    <p><strong>Prix :</strong> 9,99 CHF</p>
-    <a class="btn" href="https://buy.stripe.com/test_28o5ktgRk1WYacMdQX" target="_blank">Payer avec Stripe</a>
-</div>
-
-<div class="offer">
-    <h2>🌟 Abonnement Petit Tirage Hebdomadaire</h2>
-    <p>1 carte + message spirituel chaque semaine, livré automatiquement.</p>
-    <p><strong>Prix :</strong> 9,99 CHF/mois</p>
-    <a class="btn" href="https://buy.stripe.com/test_3csdQZ1Wq8lmbgQ6ou" target="_blank">S'abonner (Stripe)</a>
-</div>
-
-<div class="offer">
-    <h2>🌠 Abonnement Tirage Complet Hebdo</h2>
-    <p>3 cartes + vidéo personnalisée chaque semaine.</p>
-    <p><strong>Prix :</strong> 19,99 CHF/mois</p>
-    <a class="btn" href="https://buy.stripe.com/test_fZeaEN1WqeJK2KkdQV" target="_blank">S'abonner (Stripe)</a>
-</div>
-
-<div class="offer">
-    <h2>🔁 Abonnement 2 tirages/semaine</h2>
-    <p>1 tirage général + 1 tirage amour par semaine, en vidéo avec voix personnalisée.</p>
-    <p><strong>Prix :</strong> 29,99 CHF/mois</p>
-    <a class="btn" href="https://buy.stripe.com/test_cN214d8kO6de0CcdQU" target="_blank">S'abonner (Stripe)</a>
-</div>
-
-<div class="offer">
-    <h2>🔥 Abonnement 3 tirages/semaine</h2>
-    <p>3 vidéos personnalisées par semaine : travail, émotions et amour. Pour un accompagnement complet.</p>
-    <p><strong>Prix :</strong> 39,99 CHF/mois</p>
-    <a class="btn" href="https://buy.stripe.com/test_4gweV3cB4atuacM3cf" target="_blank">S'abonner (Stripe)</a>
-</div>
-
-<div class="offer">
-    <h2>💞 Tirage Duo Amoureux</h2>
-    <p>Tirage croisé pour deux personnes avec analyse de la relation, par vidéo personnalisée.</p>
-    <p><strong>Prix :</strong> 34,99 CHF</p>
-    <a class="btn" href="https://buy.stripe.com/test_eVa8wF58Cbxyfx6289" target="_blank">Commander (Stripe)</a>
-</div>
-
-<div class="offer">
     <h2>🗓️ Formulaire de Tirage</h2>
-    <form action="https://hook.eu2.make.com/p4hu8v32iq933t6q1wdq64es6fpk1scf" method="POST">
+    <form id="tirageForm">
         <div class="form-group">
             <label for="prenom">Prénom</label>
             <input type="text" id="prenom" name="prenom" required>
@@ -89,7 +48,36 @@
         </div>
         <button class="btn" type="submit">Envoyer</button>
     </form>
+    <div id="confirmation">Votre demande a été envoyée avec succès !</div>
 </div>
+
+<script>
+document.getElementById('tirageForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const data = {
+        prenom: document.getElementById('prenom').value,
+        nom: document.getElementById('nom').value,
+        date: document.getElementById('date').value,
+        theme: document.getElementById('theme').value
+    };
+    fetch("https://hook.eu2.make.com/p4hu8v32iq933t6q1wdq64es6fpk1scf", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById('confirmation').style.display = 'block';
+            document.getElementById('tirageForm').reset();
+        } else {
+            alert('Erreur lors de l'envoi du formulaire.');
+        }
+    }).catch(error => {
+        alert('Erreur réseau : ' + error);
+    });
+});
+</script>
 
 </body>
 </html>

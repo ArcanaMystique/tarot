@@ -8,70 +8,60 @@
     <style>
         body { font-family: Arial, sans-serif; background-color: #f7f2f7; padding: 30px; color: #333; }
         h1 { text-align: center; color: #663399; }
-        .offer { background: #fff; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 500px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
-        .offer h2 { margin-top: 0; }
-        .btn { background: #663399; color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 10px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; }
-        input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
-        #confirmation { text-align: center; color: green; margin-top: 20px; display: none; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; }
+        .btn { background: #663399; color: white; padding: 10px 20px; border: none; border-radius: 8px; margin-top: 15px; }
+        #confirmation { text-align: center; margin-top: 20px; color: green; display: none; }
     </style>
 </head>
 <body>
 
-<h1>Recevez votre tirage de tarot personnalisé</h1>
+<h1>Formulaire de Tirage</h1>
 
-<div class="offer">
-    <h2>🗓️ Formulaire de Tirage</h2>
-    <form id="tirageForm">
-        <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" required>
-        </div>
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" required>
-        </div>
-        <div class="form-group">
-            <label for="date">Date de naissance</label>
-            <input type="date" id="date" name="date" required>
-        </div>
-        <div class="form-group">
-            <label for="theme">Thème du tirage</label>
-            <select id="theme" name="theme" required>
-                <option value="général">Général</option>
-                <option value="amour">Amour</option>
-                <option value="travail">Travail</option>
-                <option value="spirituel">Spirituel</option>
-                <option value="duo">Duo amoureux</option>
-            </select>
-        </div>
-        <button class="btn" type="submit">Envoyer</button>
-    </form>
-    <div id="confirmation">Votre demande a été envoyée avec succès !</div>
-</div>
+<form id="tirageForm">
+    <div class="form-group">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
+    </div>
+    <div class="form-group">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+    <div class="form-group">
+        <label for="date">Date de naissance :</label>
+        <input type="date" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+        <label for="theme">Thème :</label>
+        <select id="theme" name="theme" required>
+            <option value="général">Général</option>
+            <option value="amour">Amour</option>
+            <option value="travail">Travail</option>
+            <option value="spirituel">Spirituel</option>
+            <option value="duo">Duo amoureux</option>
+        </select>
+    </div>
+    <button type="submit" class="btn">Envoyer</button>
+</form>
+
+<div id="confirmation">Votre demande a été envoyée avec succès !</div>
 
 <script>
-document.getElementById('tirageForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const data = {
-        prenom: document.getElementById('prenom').value,
-        nom: document.getElementById('nom').value,
-        date: document.getElementById('date').value,
-        theme: document.getElementById('theme').value
-    };
+document.getElementById('tirageForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var formData = new FormData(this);
+    
     fetch("https://hook.eu2.make.com/p4hu8v32iq933t6q1wdq64es6fpk1scf", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+        body: formData
     }).then(response => {
         if (response.ok) {
             document.getElementById('confirmation').style.display = 'block';
             document.getElementById('tirageForm').reset();
         } else {
-            alert('Erreur lors de l'envoi du formulaire.');
+            alert('Erreur lors de l'envoi.');
         }
     }).catch(error => {
         alert('Erreur réseau : ' + error);
